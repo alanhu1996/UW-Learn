@@ -13,6 +13,22 @@ const app = express();
 
 // If you need a backend, e.g. an API, add your custom backend-specific middleware here
 // app.use('/api', myApi);
+const bodyParser = require('body-parser');
+const passport = require('passport');
+const config = require('./config');
+
+require('./models').connect(config.dbUri);
+
+
+app.use(bodyParser.urlencoded({ extended: false }));
+// pass the passport middleware
+app.use(passport.initialize());
+
+const localSignupStrategy = require('./passport/localSignup');
+const localLoginStrategy = require('./passport/localLogin');
+passport.use('local-signup', localSignupStrategy);
+passport.use('local-login', localLoginStrategy);
+
 const authCheckMiddleware = require('./middlewares/authorizationCheck');
 app.use('/api', authCheckMiddleware);
 

@@ -1,0 +1,4 @@
+{
+  "dbUri": "mongodb://localhost/uw_learn",
+  "jwtSecret": "cat"
+}
