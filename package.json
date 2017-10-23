@@ -211,6 +211,7 @@
     "testRegex": "tests/.*\\.test\\.js$"
   },
   "dependencies": {
+    "axios": "^0.16.2",
     "babel-polyfill": "6.23.0",
     "bcrypt": "^1.0.3",
     "body-parser": "^1.18.2",

@@ -29,8 +29,13 @@ const localLoginStrategy = require('./passport/localLogin');
 passport.use('local-signup', localSignupStrategy);
 passport.use('local-login', localLoginStrategy);
 
+// Adding auth check for all api paths.
 const authCheckMiddleware = require('./middlewares/authorizationCheck');
 app.use('/api', authCheckMiddleware);
+
+// Adding a general api route for non-logined users.
+const generalRoutesApi = require('./routes/general')
+app.use('/general', generalRoutesApi)
 
 const authRoutes = require('./routes/authentication');
 const apiRoutes = require('./routes/api');
