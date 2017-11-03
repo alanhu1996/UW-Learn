@@ -14,7 +14,8 @@ router.get('/test', (req, res) => {
 router.get('/uwCoursesByCategory', (req, res) => {
 	const UW_COURSES_URL = 'https://api.uwaterloo.ca/v2/courses/'
 	const subject = req.query.subject
-	axios.get(UW_COURSES_URL + '/' + subject + '.json').then(response => {
+	console.log(subject)
+	axios.get(UW_COURSES_URL + subject + '.json?key=c780e807546941db9f3628694b9b72f1').then(response => {
 		console.log('here')
 		res.status(200).json({
 			data: response.data
@@ -24,6 +25,7 @@ router.get('/uwCoursesByCategory', (req, res) => {
 			message: err
 		})
 	})
+	
 })
 
 module.exports = router;

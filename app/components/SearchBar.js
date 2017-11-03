@@ -10,11 +10,11 @@ class SearchBar extends React.Component {
 	}
 
 	render() {
-		return (<Flex>
-			<TextField hintText='Enter a course code'/>
+		return (
+			<Flex pt={2} pb={2} pr={2} pl={2}>
+			<TextField value={this.props.courseSearchText} hintText='Enter a course code'/>
 		</Flex>)
 	}
-
 
 }
 

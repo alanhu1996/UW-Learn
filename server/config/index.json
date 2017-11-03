@@ -1,4 +1,7 @@
 {
   "dbUri": "mongodb://localhost/uw_learn",
-  "jwtSecret": "cat"
+  "jwtSecret": "cat",
+  "apiKeys": {
+  	"uwCourses": "c780e807546941db9f3628694b9b72f1"
+  }
 }
