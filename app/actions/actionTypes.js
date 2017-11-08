@@ -1,0 +1,1 @@
+export default UPDATE_COURSE_SEARCH_RESULT = 'app/mainAppActions/UPDATE_COURSE_SEARCH_RESULT'
