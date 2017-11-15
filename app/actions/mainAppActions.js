@@ -1,6 +1,8 @@
 import * as types from './actionTypes';
 
-export const searchUWCoursesByCode = (course) => ({
-  type: types.UPDATE_COURSE_SEARCH_RESULT,
-  data
-})
+export const searchUWCoursesByCode = (course) => {
+	console.log('In searchUWCoursesByCode.' + course)
+	return {
+  		type: types.UPDATE_COURSE_SEARCH_RESULT
+  	}
+}

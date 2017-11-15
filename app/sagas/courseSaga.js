@@ -1,5 +1,5 @@
 import { put, call } from 'redux-saga/effects';
-import { flickrImages, shutterStockVideos } from '../Api/api';
+import { getCourseList } from '../Api/api';
 import * as types from '../actions/actionTypes';
 
 // Responsible for searching media library, making calls to the API
@@ -7,7 +7,7 @@ import * as types from '../actions/actionTypes';
 // for success or failure operation.
 export function* searchCourseSaga({ payload }) {
   try {
-    const courseData = yield call(shutterStockVideos, payload)
+    const courseData = yield call(getCourseList, payload)
     yield [
       put({ type: types.UPDATE_SEARCH_RESULTS_SUCCESS, videos })
     ];

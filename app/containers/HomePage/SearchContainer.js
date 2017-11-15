@@ -1,16 +1,19 @@
 import React from 'react'
-import SearchBar from './components/SearchBar'
+import SearchBar from '../../components/SearchBar'
+import { connect } from 'react-redux'
 
+import { createStructuredSelector } from 'reselect'
 
-const mapStateToProps = (state) => {
-	return {
-		courseSearchText: state.home.courseSearchText
-	}
-}
+import {makeSelectCourseSearchText} from './selectors'
+import {searchUWCoursesByCode} from '../../actions/mainAppActions'
+
+const mapStateToProps = createStructuredSelector({
+	courseSearchText: makeSelectCourseSearchText()
+})
 
 const mapDispatchToProps = (dispatch) => {
 	return {
-		searchUWCoursesByCode: searchUWCoursesByCode(code) => {
+		searchUWCoursesByCode: (code) => {
 			dispatch(searchUWCoursesByCode(code))
 
 		}
@@ -22,7 +25,10 @@ class SearchContainer extends React.Component {
 		this.state = {}
 	}
 
+	componentDidLoad() {
+		this.props.searchUWCoursesByCode('cs246')
 
+	}
 	render() {
 		return (<SearchBar />)
 	}
@@ -30,4 +36,4 @@ class SearchContainer extends React.Component {
 
 }
 
-export default SearchContainer
+export default connect(mapStateToProps, mapDispatchToProps)(SearchContainer)
