@@ -15,14 +15,28 @@ import messages from './messages';
 import { Flex, Box } from 'reflexbox'
 import SearchContainer from './SearchContainer'
 
-export default class HomePage extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
+import { compose } from 'redux'
+import injectSaga from 'utils/injectSaga'
+import injectReducer from 'utils/injectReducer'
+import reducer from './reducer'
+import saga from './saga'
+
+export class HomePage extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   render() {
     return (
       <Flex>
-        <h1>
-          <SearchContainer/>
-        </h1>
+        <SearchContainer/>
       </Flex>
     );
   }
 }
+
+
+const withReducer = injectReducer({ key: 'home', reducer });
+const withSaga = injectSaga({ key: 'home', saga })
+
+export default compose(
+  withReducer
+)(HomePage)
+
+

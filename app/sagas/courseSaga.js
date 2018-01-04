@@ -6,6 +6,7 @@ import * as types from '../actions/actionTypes';
 // and instructing the redux-saga middle ware on the next line of action,
 // for success or failure operation.
 export function* searchCourseSaga({ payload }) {
+  console.log('saga run')
   try {
     const courseData = yield call(getCourseList, payload)
     yield [

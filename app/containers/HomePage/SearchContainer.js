@@ -1,14 +1,21 @@
 import React from 'react'
 import SearchBar from '../../components/SearchBar'
+import SearchResult from '../../components/SearchResult'
 import { connect } from 'react-redux'
 
+import { Flex, Box } from 'reflexbox'
 import { createStructuredSelector } from 'reselect'
 
-import {makeSelectCourseSearchText} from './selectors'
-import {searchUWCoursesByCode} from '../../actions/mainAppActions'
-
+import {makeSelectCourseSearchText, makeSelectCourseAllResult} from './selectors'
+import {searchUWCoursesByCode} from './actions'
+import { compose } from 'redux'
+import injectSaga from 'utils/injectSaga'
+import injectReducer from 'utils/injectReducer'
+import reducer from './reducer'
+import saga from './saga'
 const mapStateToProps = createStructuredSelector({
-	courseSearchText: makeSelectCourseSearchText()
+	courseSearchText: makeSelectCourseSearchText(),
+	courseResultData: makeSelectCourseAllResult()
 })
 
 const mapDispatchToProps = (dispatch) => {
@@ -25,15 +32,27 @@ class SearchContainer extends React.Component {
 		this.state = {}
 	}
 
-	componentDidLoad() {
+	componentDidMount() {
+		console.log('Componentload')
 		this.props.searchUWCoursesByCode('cs246')
 
 	}
 	render() {
-		return (<SearchBar />)
+		console.log('render container')
+		return (<Flex column>
+			<SearchBar />
+			<SearchResult searchResultData={this.props.courseResultData}/>
+			</Flex>)
 	}
 
 
 }
+const withReducer = injectReducer({ key: 'home', reducer });
+const withSaga = injectSaga({ key: 'home', saga })
+const withConnect = connect(mapStateToProps, mapDispatchToProps)
 
-export default connect(mapStateToProps, mapDispatchToProps)(SearchContainer)
+export default compose(
+  	withReducer,
+  	withSaga,
+  	withConnect
+)(SearchContainer)

@@ -12,6 +12,7 @@ class SearchResult extends React.Component {
 	}
 
 	generateResultItems(data){
+		console.log(data)
 		let result = data.map(item => {
 			let courseCode = item.subject + item.catalog_number
 			let title = item.title
@@ -21,6 +22,7 @@ class SearchResult extends React.Component {
 				</Flex>
 				)
 		})
+		return (<Flex column>{result}</Flex>)
 	}
 	render() {
 

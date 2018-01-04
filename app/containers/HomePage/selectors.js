@@ -12,7 +12,17 @@ const makeSelectCourseSearchText = () => createSelector(
   (homeState) => homeState.get('courseSearchText')
 )
 
+const makeSelectCourseAllResult = () => createSelector(
+  selectHome,
+  (homeState) => {
+  	console.log(homeState.get('searchResultData'))
+  	return homeState.get('searchResultData')
+  }
+)
+
+
 export {
   selectHome,
   makeSelectCourseSearchText,
+  makeSelectCourseAllResult
 }
